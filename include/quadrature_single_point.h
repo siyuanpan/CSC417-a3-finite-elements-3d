@@ -1,6 +1,6 @@
 #include <Eigen/Dense>
 #include <EigenTypes.h>
-
+#include <iostream>
 //Input:
 //  q - generalized coordinates of the FEM system
 //  element - vertex indices for the tetrahedron

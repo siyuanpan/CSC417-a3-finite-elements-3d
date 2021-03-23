@@ -25,13 +25,25 @@ void dV_linear_tetrahedron_dq(Eigen::Vector12d &dV, Eigen::Ref<const Eigen::Vect
         dpsi_neo_hookean_dF(psi, F, C, D);
 
         Eigen::Matrix<double, 9, 12> B;
+        B.setZero();
         for (int i = 0; i < 4; ++i)
         {
             B.block(0, 0 + 3 * i, 3, 1) = dphi.row(i).transpose();
             B.block(3, 1 + 3 * i, 3, 1) = dphi.row(i).transpose();
             B.block(6, 2 + 3 * i, 3, 1) = dphi.row(i).transpose();
         }
+        // std::cout << B << std::endl;
+        // Eigen::Vector12d qj;
+        // qj.segment<3>(0) = q.segment<3>(3 * element(0));
+        // qj.segment<3>(3) = q.segment<3>(3 * element(1));
+        // qj.segment<3>(6) = q.segment<3>(3 * element(2));
+        // qj.segment<3>(9) = q.segment<3>(3 * element(3));
+        // auto Fj = B * qj;
+        // std::cout << Fj << std::endl;
+        // std::exit(0);
         dV = B.transpose() * psi;
+        // std::cout << psi << std::endl;
+        // std::exit(0);
     };
 
     quadrature_single_point(dV, q, element, volume, neohookean_linear_tet);

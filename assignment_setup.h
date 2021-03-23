@@ -219,7 +219,7 @@ Eigen::SparseMatrixd tmp_stiffness;
 std::vector<std::pair<Eigen::Vector3d, unsigned int>> spring_points;
 
 bool skinning_on = true;
-bool fully_implicit = true;
+bool fully_implicit = false;
 bool bunny = true;
 
 //selection spring
